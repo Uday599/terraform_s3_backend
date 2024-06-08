@@ -9,3 +9,11 @@ module "root_create_dynamo_locking" {
     dynamodb_name = var.root_dynamodb_name
     hash_key = var.root_hash_key
 }
+
+module "create_ec2" {
+    source = "./modules/ec2_create"
+    instance_type = "t2.micro"
+    key_name = "from_terra"
+    key_path = "./keys/ec2.pem"
+    sg_name = "terraform-sg-ssh"
+}
